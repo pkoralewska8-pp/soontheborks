@@ -5,95 +5,62 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Patrick & Patrycja</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-html { scroll-behavior: smooth; }
+body{margin:0;font-family:Montserrat;background:#fff;color:#222}
+header{
+height:100vh;
+background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
+url('https://images.unsplash.com/photo-1529636798458-92182e662485');
+background-size:cover;
+display:flex;align-items:center;justify-content:center;
+text-align:center;color:#fff;
+}
+header h1{font-family:Playfair Display;font-size:64px;margin:0}
+section{padding:100px 20px;max-width:900px;margin:auto}
+h2{text-align:center;font-family:Playfair Display;margin-bottom:40px}
+p{text-align:center}
 
-body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: #ffffff;
-    color: #222;
-    line-height: 1.7;
+.lang{position:fixed;top:20px;right:20px}
+
+table{width:100%;border-collapse:collapse;text-align:center}
+th,td{padding:12px}
+tr{border-bottom:1px solid #eee}
+tr:hover{background:#fafafa}
+
+.reservation-box{
+background:#fafafa;border-radius:14px;
+padding:30px;margin-top:30px;
+box-shadow:0 10px 30px rgba(0,0,0,0.05)
 }
 
-header {
-    height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
-    url('https://images.unsplash.com/photo-1529636798458-92182e662485');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
+input,select{
+width:100%;padding:12px;margin:8px 0;
+border:1px solid #ddd;border-radius:8px;
 }
 
-header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 64px;
-    margin: 0;
+input:focus,select:focus{border-color:#222;outline:none}
+
+button{
+padding:14px;background:#222;color:#fff;
+border:none;border-radius:8px;cursor:pointer;
+transition:.3s
 }
+button:hover{background:#444}
 
-section {
-    padding: 100px 20px;
-    max-width: 900px;
-    margin: auto;
+#popup{
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,.4);
+display:none;align-items:center;justify-content:center;
 }
-
-h2 {
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    margin-bottom: 40px;
+#popupBox{
+background:#fff;padding:40px;border-radius:16px;
+text-align:center;animation:fade .4s ease
 }
-
-p { text-align: center; }
-
-.lang {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-}
-
-.reservation-box {
-    background: #f7f7f7;
-    border-radius: 14px;
-    padding: 30px;
-    margin-top: 30px;
-}
-
-.reservation-box input,
-.reservation-box select {
-    padding: 10px;
-    margin: 8px 0;
-    width: 100%;
-}
-
-button {
-    padding: 12px;
-    background: #222;
-    color: white;
-    border: none;
-}
-
-/* popup */
-#popup {
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background:rgba(0,0,0,0.4);
-    display:none;
-    align-items:center;
-    justify-content:center;
-}
-
-#popupBox {
-    background:white;
-    padding:40px;
-    border-radius:16px;
-    text-align:center;
+@keyframes fade{
+from{opacity:0;transform:scale(.9)}
+to{opacity:1;transform:scale(1)}
 }
 </style>
 </head>
@@ -106,170 +73,153 @@ button {
 </div>
 
 <header>
+<div>
 <h1>Patrick & Patrycja</h1>
-<p>05.09.2026</p>
+<div style="width:80px;height:1px;background:white;margin:20px auto;opacity:.7"></div>
+<p>05.09.2026 | 16:00</p>
 <div id="countdown"></div>
+</div>
 </header>
 
 <section>
-<h2 class="trans" data-pl="Noclegi" data-de="Unterkunft"></h2>
+<h2>Harmonogram</h2>
+<p>16:00 Ceremonia<br>17:00 Obiad<br>19:30 Tort<br>20:00 Pierwszy taniec</p>
+</section>
+
+<section>
+<h2>10-lecie naszego Związku</h2>
+<p>Zapraszamy w niedzielę od 15:00 na grilla i tańce.</p>
+</section>
+
+<section>
+<h2>Zamiast kwiatów</h2>
+<p>Wsparcie celu charytatywnego.</p>
+</section>
+
+<section>
+<h2>Animator</h2>
+<p>Animator dla dzieci 19:00–22:00</p>
+</section>
+
+<section>
+<h2>Menu Vege</h2>
+<p>Prosimy o kontakt.</p>
+</section>
+
+<section>
+<h2>Zdjęcia</h2>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://photos.app.goo.gl/XJbj8UqFY39CLZpJA">
+</section>
+
+<section>
+<h2>Lokalizacja</h2>
+
+<img src="mapa_noclegi.jpg" style="width:100%;margin-bottom:20px;">
+
+<p>
+1. Przyjęcie ślubne<br>
+2. Hotel Ostaniec – 36 pokoi 2-osobowych + 6 Studio (2 pokoje, 1 łazienka)<br>
+3. Osada Zborów – tylko pokoje 2-osobowe
+</p>
+
+</section>
+
+<section>
+<h2>Noclegi</h2>
 
 <div class="reservation-box">
 
-<table style="width:100%; text-align:center;">
-<tr>
-<th></th>
-<th class="trans" data-pl="Nd–Czw" data-de="So–Do"></th>
-<th class="trans" data-pl="Pt–Sob" data-de="Fr–Sa"></th>
-</tr>
-
+<table>
+<tr><th></th><th>Nd–Czw</th><th>Pt–Sob</th></tr>
 <tr><td><strong>Hotel Ostaniec</strong></td><td></td><td></td></tr>
-
-<tr>
-<td class="trans" data-pl="Pokój 2-osobowy" data-de="Doppelzimmer"></td>
-<td>323 zł</td>
-<td>374 zł</td>
-</tr>
-
-<tr>
-<td>Studio</td>
-<td>616 zł</td>
-<td>731 zł</td>
-</tr>
-
+<tr><td>2-osobowy</td><td>323 zł</td><td>374 zł</td></tr>
+<tr><td>Studio</td><td>616 zł</td><td>731 zł</td></tr>
 <tr><td><strong>Osada Zborów</strong></td><td></td><td></td></tr>
-
-<tr>
-<td class="trans" data-pl="Pokój 2-osobowy" data-de="Doppelzimmer"></td>
-<td>306 zł</td>
-<td>320 zł</td>
-</tr>
-
+<tr><td>2-osobowy</td><td>306 zł</td><td>320 zł</td></tr>
 </table>
 
-<form id="noclegForm" action="https://formspree.io/f/xzzpqqpb" method="POST">
+<form id="form" action="https://formspree.io/f/xzzpqqpb" method="POST">
 
-<select id="lokalizacja" name="Lokalizacja">
+<input type="text" name="Imie" placeholder="Imię i nazwisko" required>
+<input type="email" name="Email" placeholder="E-mail" required>
+
+<select id="lok">
 <option value="hotel">Hotel Ostaniec</option>
 <option value="osada">Osada Zborów</option>
 </select>
 
-<input type="text" name="Imie" placeholder="Imię i nazwisko" required>
-
-<input type="date" name="Od" required>
-<input type="date" name="Do" required>
-
-<select id="pokoj" name="Pokoj">
-<option value="2">Pokój 2-osobowy</option>
+<select id="pok">
+<option value="2">2-osobowy</option>
 <option value="studio">Studio</option>
 </select>
 
-<button type="submit"
-class="trans"
-data-pl="Rezerwuj nocleg"
-data-de="Unterkunft reservieren">
-</button>
+<input type="date" id="od" required>
+<input type="date" id="do" required>
+
+<button type="submit">Rezerwuj</button>
 
 </form>
 
 </div>
 </section>
 
-<!-- popup -->
 <div id="popup">
 <div id="popupBox">
-<p id="popupText"></p>
+<p id="txt"></p>
 <p>Patrycja & Patrick</p>
 </div>
 </div>
 
 <script>
 
-let currentLang="pl";
-
-function setLang(lang){
-currentLang=lang;
-document.querySelectorAll('.trans').forEach(el=>{
-el.innerHTML=el.getAttribute('data-'+lang);
-});
-updateCountdown();
-}
+let lang="pl";
+function setLang(l){lang=l}
 
 const wedding=new Date("Sep 5 2026 16:00").getTime();
-
-function updateCountdown(){
-let now=new Date().getTime();
-let d=wedding-now;
-
-let days=Math.floor(d/(1000*60*60*24));
-let h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
-let m=Math.floor((d%(1000*60*60))/(1000*60));
-
+setInterval(()=>{
+let d=wedding-new Date().getTime();
+let days=Math.floor(d/86400000);
 document.getElementById("countdown").innerHTML=
-currentLang==="de"
-? days+" Tage "+h+" Std "+m+" Min"
-: days+" dni "+h+" godz "+m+" min";
-}
+days+" dni";
+},1000);
 
-setInterval(updateCountdown,1000);
-updateCountdown();
+/* daty */
+const od=document.getElementById("od");
+const doo=document.getElementById("do");
 
-/* BLOKADA DAT */
-const odInput = document.querySelector('input[name="Od"]');
-const doInput = document.querySelector('input[name="Do"]');
+od.addEventListener("change",()=>{
+let d=new Date(od.value);
+d.setDate(d.getDate()+1);
+doo.value=d.toISOString().split('T')[0];
+});
 
-if(odInput && doInput){
-odInput.min="2026-09-04";
-odInput.max="2026-09-06";
-doInput.min="2026-09-04";
-doInput.max="2026-09-06";
-}
+/* osada */
+const lok=document.getElementById("lok");
+const pok=document.getElementById("pok");
 
-/* LOGIKA POKOI */
-const lokalizacja=document.getElementById('lokalizacja');
-const pokoj=document.getElementById('pokoj');
-
-if(lokalizacja && pokoj){
-lokalizacja.addEventListener('change',function(){
-if(this.value==="osada"){
-for(let o of pokoj.options){
-o.disabled = o.value !== "2";
-}
-pokoj.value="2";
+lok.addEventListener("change",()=>{
+if(lok.value==="osada"){
+pok.value="2";
+pok.querySelector('[value="studio"]').disabled=true;
 }else{
-for(let o of pokoj.options){
-o.disabled=false;
-}
+pok.querySelector('[value="studio"]').disabled=false;
 }
 });
-}
 
-/* FORM + POPUP */
-const form=document.getElementById('noclegForm');
-
-form.addEventListener('submit',async e=>{
+/* form */
+const f=document.getElementById("form");
+f.addEventListener("submit",async e=>{
 e.preventDefault();
+await fetch(f.action,{method:"POST",body:new FormData(f)});
+f.reset();
 
-await fetch(form.action,{
-method:'POST',
-body:new FormData(form),
-headers:{'Accept':'application/json'}
-});
-
-form.reset();
-
-const popup=document.getElementById('popup');
-const text=document.getElementById('popupText');
-
-text.innerHTML=currentLang==="de"
-? "Danke, dass du diesen besonderen Tag mit uns verbringst ❤️"
-: "Dziękujemy, że jesteś z nami ❤️";
+txt.innerHTML=lang==="de"
+?"Danke dass du mit uns feierst ❤️"
+:"Dziękujemy że jesteś z nami ❤️";
 
 popup.style.display="flex";
-setTimeout(()=>popup.style.display="none",4000);
+popup.onclick=()=>popup.style.display="none";
 });
-
-setLang('pl');
 
 </script>
 
