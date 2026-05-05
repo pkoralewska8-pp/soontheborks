@@ -315,59 +315,69 @@ data-de="Unterkunft">
 </h2>
 
 <p class="trans"
-data-pl="Poniżej znajdziesz dostępne opcje noclegu oraz formularz rezerwacji."
-data-de="Unten findest du verfügbare Unterkunftsoptionen und das Reservierungsformular.">
+data-pl="Poniżej znajdziesz dostępne opcje noclegu."
+data-de="Unten findest du verfügbare Unterkunftsoptionen.">
 </p>
 
 <div class="reservation-box">
 
-<table style="width:100%; border-collapse: collapse; margin-bottom: 25px;">
+<table style="width:100%; border-collapse: collapse; text-align:center;">
+
 <tr style="border-bottom:1px solid #ddd;">
-<th>Opcja</th>
-<th>Cena</th>
-<th>Opis</th>
+<th style="padding:12px;"></th>
+
+<th style="padding:12px;"
+class="trans"
+data-pl="Nd–Czw"
+data-de="So–Do">
+</th>
+
+<th style="padding:12px;"
+class="trans"
+data-pl="Pt–Sob"
+data-de="Fr–Sa">
+</th>
+</tr>
+
+<tr style="border-bottom:1px solid #eee;">
+<td style="padding:12px;"><strong>Hotel Ostaniec</strong></td>
+<td></td>
+<td></td>
 </tr>
 
 <tr>
-<td>Pokój 2-osobowy</td>
-<td>300 zł</td>
-<td>Łóżko podwójne</td>
+<td style="padding:10px;"
+class="trans"
+data-pl="Pokój 2-osobowy"
+data-de="Doppelzimmer">
+</td>
+<td style="padding:10px;">323 zł</td>
+<td style="padding:10px;">374 zł</td>
 </tr>
 
 <tr>
-<td>Pokój 3-osobowy</td>
-<td>450 zł</td>
-<td>Idealny dla rodziny</td>
+<td style="padding:10px;">Studio</td>
+<td style="padding:10px;">616 zł</td>
+<td style="padding:10px;">731 zł</td>
+</tr>
+
+<tr style="border-top:1px solid #ddd;">
+<td style="padding:15px;"><strong>Osada Zborów</strong></td>
+<td></td>
+<td></td>
 </tr>
 
 <tr>
-<td>Domek</td>
-<td>600 zł</td>
-<td>Więcej prywatności</td>
+<td style="padding:10px;"
+class="trans"
+data-pl="Pokój 2-osobowy"
+data-de="Doppelzimmer">
+</td>
+<td style="padding:10px;">306 zł</td>
+<td style="padding:10px;">320 zł</td>
 </tr>
 
 </table>
-
-<form id="noclegForm" action="https://formspree.io/f/yourID" method="POST">
-
-<input type="text" name="Imie" placeholder="Imię i nazwisko" required><br>
-
-<input type="date" name="Od" required>
-<input type="date" name="Do" required><br>
-
-<select name="Pokoj">
-<option>Pokój 2-osobowy</option>
-<option>Pokój 3-osobowy</option>
-<option>Domek</option>
-</select><br>
-
-<button type="submit">Rezerwuj nocleg</button>
-
-</form>
-
-<p id="successMessage" style="display:none; margin-top:15px;">
-Dziękujemy! Rezerwacja wysłana 💌
-</p>
 
 </div>
 
