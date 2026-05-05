@@ -306,7 +306,73 @@ Dodaj zdjęcia
 </p>
 
 </section>
+    
+<section>
 
+<h2 class="trans"
+data-pl="Noclegi"
+data-de="Unterkunft">
+</h2>
+
+<p class="trans"
+data-pl="Poniżej znajdziesz dostępne opcje noclegu oraz formularz rezerwacji."
+data-de="Unten findest du verfügbare Unterkunftsoptionen und das Reservierungsformular.">
+</p>
+
+<div class="reservation-box">
+
+<table style="width:100%; border-collapse: collapse; margin-bottom: 25px;">
+<tr style="border-bottom:1px solid #ddd;">
+<th>Opcja</th>
+<th>Cena</th>
+<th>Opis</th>
+</tr>
+
+<tr>
+<td>Pokój 2-osobowy</td>
+<td>300 zł</td>
+<td>Łóżko podwójne</td>
+</tr>
+
+<tr>
+<td>Pokój 3-osobowy</td>
+<td>450 zł</td>
+<td>Idealny dla rodziny</td>
+</tr>
+
+<tr>
+<td>Domek</td>
+<td>600 zł</td>
+<td>Więcej prywatności</td>
+</tr>
+
+</table>
+
+<form id="noclegForm" action="https://formspree.io/f/yourID" method="POST">
+
+<input type="text" name="Imie" placeholder="Imię i nazwisko" required><br>
+
+<input type="date" name="Od" required>
+<input type="date" name="Do" required><br>
+
+<select name="Pokoj">
+<option>Pokój 2-osobowy</option>
+<option>Pokój 3-osobowy</option>
+<option>Domek</option>
+</select><br>
+
+<button type="submit">Rezerwuj nocleg</button>
+
+</form>
+
+<p id="successMessage" style="display:none; margin-top:15px;">
+Dziękujemy! Rezerwacja wysłana 💌
+</p>
+
+</div>
+
+</section>
+    
 <section>
 
 <h2 class="trans"
