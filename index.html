@@ -78,7 +78,7 @@ button {
     border: none;
 }
 
-/* POPUP */
+/* popup */
 #popup {
     position:fixed;
     top:0; left:0;
@@ -175,7 +175,7 @@ data-de="Unterkunft reservieren">
 </div>
 </section>
 
-<!-- POPUP -->
+<!-- popup -->
 <div id="popup">
 <div id="popupBox">
 <p id="popupText"></p>
@@ -214,18 +214,37 @@ currentLang==="de"
 setInterval(updateCountdown,1000);
 updateCountdown();
 
+/* BLOKADA DAT */
+const odInput = document.querySelector('input[name="Od"]');
+const doInput = document.querySelector('input[name="Do"]');
+
+if(odInput && doInput){
+odInput.min="2026-09-04";
+odInput.max="2026-09-06";
+doInput.min="2026-09-04";
+doInput.max="2026-09-06";
+}
+
+/* LOGIKA POKOI */
 const lokalizacja=document.getElementById('lokalizacja');
 const pokoj=document.getElementById('pokoj');
 
-lokalizacja.addEventListener('change',()=>{
-if(lokalizacja.value==="osada"){
-[...pokoj.options].forEach(o=>o.disabled=o.value!=="2");
+if(lokalizacja && pokoj){
+lokalizacja.addEventListener('change',function(){
+if(this.value==="osada"){
+for(let o of pokoj.options){
+o.disabled = o.value !== "2";
+}
 pokoj.value="2";
 }else{
-[...pokoj.options].forEach(o=>o.disabled=false);
+for(let o of pokoj.options){
+o.disabled=false;
+}
 }
 });
+}
 
+/* FORM + POPUP */
 const form=document.getElementById('noclegForm');
 
 form.addEventListener('submit',async e=>{
@@ -247,7 +266,6 @@ text.innerHTML=currentLang==="de"
 : "Dziękujemy, że jesteś z nami ❤️";
 
 popup.style.display="flex";
-
 setTimeout(()=>popup.style.display="none",4000);
 });
 
