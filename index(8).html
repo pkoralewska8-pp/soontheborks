@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patrick & Patrycja</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #ffffff;
+    color: #222;
+    line-height: 1.7;
+}
+
+header {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
+    url('https://images.unsplash.com/photo-1529636798458-92182e662485');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    margin: 0;
+}
+
+header p { font-size: 20px; }
+
+section {
+    padding: 100px 20px;
+    max-width: 900px;
+    margin: auto;
+    opacity: 1;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Harmonogram - każda linia pod sobą */
+.schedule-lines {
+    line-height: 1.9;
+}
+
+.countdown {
+    font-size: 26px;
+    margin-top: 20px;
+}
+
+.map {
+    width: 100%;
+    height: 350px;
+    border: none;
+    margin-top: 30px;
+}
+
+.gallery img {
+    width: 100%;
+    max-width: 900px;
+    display: block;
+    margin: 40px auto;
+}
+
+.lang {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+button {
+    padding: 10px 16px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+}
+
+.qr {
+    display: block;
+    margin: 30px auto;
+}
+
+/* RAMKA REZERWACJI */
+
+.reservation-box {
+    background: #f7f7f7;
+    border: 1px solid #e5e5e5;
+    border-radius: 14px;
+    padding: 30px 25px;
+    margin-top: 30px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+}
+
+.reservation-box input,
+.reservation-box select {
+    padding: 10px;
+    margin: 8px 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 260px;
+    max-width: 90%;
+}
+
+.reservation-box button {
+    margin-top: 15px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: #222;
+    color: white;
+    border: none;
+}
+
+@media (max-width: 768px) {
+
+    header h1 { font-size: 38px; }
+
+    section { padding: 70px 18px; }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="lang">
+    <button onclick="setLang('pl')">PL</button>
+    <button onclick="setLang('de')">DE</button>
+</div>
+
+<header>
+    <div>
+        <h1>Patrick & Patrycja</h1>
+        <p id="subtitle">Soon the Bork's</p>
+        <p>05.09.2026 | 16:00</p>
+        <div class="countdown" id="countdown"></div>
+    </div>
+</header>
+
+<section>
+
+<h2 class="trans"
+data-pl="Harmonogram"
+data-de="Zeitplan">
+</h2>
+
+<p class="trans schedule-lines"
+
+data-pl="16:00 — Ceremonia Ślubna<br>
+17:00 — Obiad<br>
+18:00 — Życzenia<br>
+19:30 — Tort<br>
+20:00 — Pierwszy taniec już Borków<br>
+22:00 — II ciepłe danie<br>
+00:00 — Oczepiny<br>
+01:30 — Wypierdalacz w bufecie*"
+
+data-de="16:00 — Trauung<br>
+17:00 — Abendessen<br>
+18:00 — Glückwünsche<br>
+19:30 — Torte<br>
+20:00 — Eröffnungstanz der Borks<br>
+22:00 — Zweites warmes Gericht<br>
+00:00 — Mitternachtsspiele<br>
+01:30 — Überraschung am Buffet*">
+
+</p>
+
+<p class="trans"
+data-pl="*Z humorem — żeby nikt dziś nie zapomniał cieszyć się życiem."
+data-de="*Mit Humor — damit heute niemand vergisst, das Leben zu genießen.">
+</p>
+
+</section>
+
+<section>
+
+<h2 class="trans"
+data-pl="10-lecie naszego Związku"
+data-de="10-jähriges Jubiläum unserer Beziehung">
+</h2>
+
+<p class="trans"
+data-pl="Zapraszamy w niedzielę od godziny 15:00 na luźne tańce i grilla. Poprawiny odbędą się w tym samym miejscu co wesele."
+data-de="Wir laden euch am Sonntag ab 15:00 Uhr zu lockerem Tanzen und Grillen ein. Die Nachfeier findet am selben Ort statt.">
+</p>
+
+</section>
+
+<section>
+
+<h2 class="trans"
+data-pl="Lokalizacja"
+data-de="Ort">
+</h2>
+
+<p>
+Hotel Ostaniec<br>
+Jaskiniowa 6<br>
+42-425 Podlesice
+</p>
+
+<p>
+<a href="https://www.resortjurajski.pl/" target="_blank">
+www.resortjurajski.pl
+</a>
+</p>
+
+<iframe class="map"
+src="https://maps.google.com/maps?q=Hotel%20Ostaniec%20Podlesice&output=embed">
+</iframe>
+
+</section>
+
+<section>
+
+<h2 class="trans"
+data-pl="Zamiast kwiatów"
+data-de="Statt Blumen">
+</h2>
+
+<p class="trans"
+data-pl="Zamiast kwiatów zachęcamy do wsparcia szczytnego celu. Podczas przyjęcia będzie dostępna puszka na cele charytatywne. Po weselu wspomożemy jedną konkretną osobę, która potrzebuje pomocy."
+data-de="Anstelle von Blumen möchten wir zu einem guten Zweck ermutigen. Während der Feier wird eine Spendenbox vorhanden sein. Nach der Hochzeit möchten wir einer bestimmten Person helfen, die Unterstützung braucht.">
+</p>
+
+</section>
+
+<section>
+
+<h2 class="trans"
+data-pl="Animator dla dzieci"
+data-de="Kinderanimation">
+</h2>
+
+<p class="trans"
+data-pl="Najmłodsi goście nie będą się nudzić — od 19:00 do 22:00 nad dobrą zabawą dzieci czuwać będzie Animator, a rodzice będą mogli spokojnie zatańczyć."
+data-de="Unsere kleinen Gäste werden sich nicht langweilen — von 19:00 bis 22:00 sorgt ein Kinderanimateur für Spaß, während die Eltern entspannt tanzen können.">
+</p>
+
+</section>
+
+<section>
+
+<h2 class="trans"
+data-pl="Menu Vege"
+data-de="Vegetarisches Menü">
+</h2>
+
+<p class="trans"
+data-pl="Gości, którzy chcą mieć menu Vege, prosimy o kontakt bezpośrednio z nami."
+data-de="Gäste, die ein vegetarisches Menü wünschen, bitten wir um direkte Kontaktaufnahme mit uns.">
+</p>
+
+</section>
+
+<section>
+
+<h2 class="trans"
+data-pl="Zdjęcia z wesela"
+data-de="Fotos von der Hochzeit">
+</h2>
+
+<p class="trans"
+data-pl="Każda chwila tak szybko ucieka. Będziemy wdzięczni, jeśli podzielicie się z nami Waszymi zdjęciami — nie tylko z nami w roli głównej, oczywiście z Wesela ☺"
+data-de="Jeder Moment vergeht so schnell. Wir wären sehr dankbar, wenn ihr eure Fotos mit uns teilt — nicht nur mit uns in der Hauptrolle, natürlich von der Hochzeit ☺">
+</p>
+
+<img class="qr"
+src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://photos.app.goo.gl/XJbj8UqFY39CLZpJA">
+
+<p>
+<a href="https://photos.app.goo.gl/XJbj8UqFY39CLZpJA" target="_blank">
+Dodaj zdjęcia
+</a>
+</p>
+
+</section>
+
+<section>
+
+<h2 class="trans"
+data-pl="Kontakt do naszych Świadków"
+data-de="Kontakt zu unseren Trauzeugen">
+</h2>
+
+<p>
+Łukasz — <a href="tel:+48501977997">+48 501 977 997</a><br>
+Michał — <a href="tel:+48503833619">+48 503 833 619</a>
+</p>
+
+</section>
+
+<script>
+
+let currentLang = "pl";
+
+const weddingDate =
+new Date("Sep 5, 2026 16:00:00").getTime();
+
+/* LICZNIK */
+
+function updateCountdown() {
+
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    const days = Math.floor(
+        distance / (1000 * 60 * 60 * 24)
+    );
+
+    const hours = Math.floor(
+        (distance %
+        (1000*60*60*24)) /
+        (1000*60*60)
+    );
+
+    const minutes = Math.floor(
+        (distance %
+        (1000*60*60)) /
+        (1000*60)
+    );
+
+    if(currentLang === "de") {
+
+        document.getElementById(
+        "countdown").innerHTML =
+
+        days + " Tage " +
+        hours + " Std " +
+        minutes + " Min";
+
+    }
+
+    else {
+
+        document.getElementById(
+        "countdown").innerHTML =
+
+        days + " dni " +
+        hours + " godz " +
+        minutes + " min";
+
+    }
+
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+/* JĘZYK */
+
+function setLang(lang) {
+
+    currentLang = lang;
+
+    document
+    .querySelectorAll('.trans')
+    .forEach(el => {
+
+        if(lang === 'de') {
+            el.innerHTML =
+            el.getAttribute('data-de');
+        }
+
+        else {
+            el.innerHTML =
+            el.getAttribute('data-pl');
+        }
+
+    });
+
+    updateCountdown();
+
+}
+
+setLang('pl');
+
+/* FORMULARZ */
+
+const form =
+document.getElementById(
+'noclegForm'
+);
+
+if(form) {
+
+form.addEventListener(
+'submit',
+async function(e) {
+
+    e.preventDefault();
+
+    const od =
+    form.querySelector(
+    'input[name="Od"]'
+    ).value;
+
+    const doData =
+    form.querySelector(
+    'input[name="Do"]'
+    ).value;
+
+    if(od && doData) {
+
+        const odDate =
+        new Date(od);
+
+        const doDateObj =
+        new Date(doData);
+
+        if(doDateObj < odDate) {
+
+            if(currentLang === "de") {
+
+                alert(
+                "Das Abreisedatum kann nicht vor dem Anreisedatum liegen."
+                );
+
+            }
+
+            else {
+
+                alert(
+                "Data wyjazdu nie może być wcześniejsza niż data przyjazdu."
+                );
+
+            }
+
+            return;
+
+        }
+
+    }
+
+    const data =
+    new FormData(form);
+
+    await fetch(
+        form.action,
+        {
+            method: 'POST',
+            body: data,
+            headers: {
+                'Accept':
+                'application/json'
+            }
+        }
+    );
+
+    form.reset();
+
+    document
+    .getElementById(
+    'successMessage'
+    ).style.display =
+    'block';
+
+});
+
+}
+
+/* ANIMACJE */
+
+const sections =
+document.querySelectorAll(
+"section"
+);
+
+window.addEventListener(
+"load",
+() => {
+
+    sections.forEach(sec =>
+        sec.classList.add(
+        "visible"
+        )
+    );
+
+});
+
+window.addEventListener(
+"scroll",
+() => {
+
+    sections.forEach(sec => {
+
+        const top =
+        sec.getBoundingClientRect()
+        .top;
+
+        if(top <
+        window.innerHeight - 100) {
+
+            sec.classList.add(
+            "visible"
+            );
+
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
