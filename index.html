@@ -382,6 +382,83 @@ data-de="Doppelzimmer">
 </div>
 
 </section>
+<section>
+
+<h2 class="trans"
+data-pl="Noclegi"
+data-de="Unterkunft">
+</h2>
+
+<div class="reservation-box">
+
+<table style="width:100%; border-collapse: collapse; text-align:center;">
+
+<tr style="border-bottom:1px solid #ddd;">
+<th></th>
+<th class="trans" data-pl="Nd–Czw" data-de="So–Do"></th>
+<th class="trans" data-pl="Pt–Sob" data-de="Fr–Sa"></th>
+</tr>
+
+<tr>
+<td><strong>Hotel Ostaniec</strong></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td class="trans" data-pl="Pokój 2-osobowy" data-de="Doppelzimmer"></td>
+<td>323 zł</td>
+<td>374 zł</td>
+</tr>
+
+<tr>
+<td>Studio</td>
+<td>616 zł</td>
+<td>731 zł</td>
+</tr>
+
+<tr>
+<td><strong>Osada Zborów</strong></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td class="trans" data-pl="Pokój 2-osobowy" data-de="Doppelzimmer"></td>
+<td>306 zł</td>
+<td>320 zł</td>
+</tr>
+
+</table>
+
+<form id="noclegForm" action="https://formspree.io/f/xzzpqqpb" method="POST">
+
+<select id="lokalizacja" name="Lokalizacja">
+<option value="hotel">Hotel Ostaniec</option>
+<option value="osada">Osada Zborów</option>
+</select><br>
+
+<input type="text" name="Imie" placeholder="Imię i nazwisko" required><br>
+
+<input type="date" name="Od" required>
+<input type="date" name="Do" required><br>
+
+<select id="pokoj" name="Pokoj">
+<option value="2">Pokój 2-osobowy</option>
+<option value="studio">Studio</option>
+</select><br>
+
+<button type="submit"
+class="trans"
+data-pl="Rezerwuj nocleg"
+data-de="Unterkunft reservieren">
+</button>
+
+</form>
+
+</div>
+
+</section>
     
 <section>
 
@@ -609,6 +686,84 @@ window.addEventListener(
 });
 
 </script>
+<div id="popup" style="
+position:fixed;
+top:0; left:0;
+width:100%; height:100%;
+background:rgba(0,0,0,0.4);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:999;
+">
 
+<div style="
+background:white;
+padding:40px;
+border-radius:16px;
+text-align:center;
+max-width:300px;
+box-shadow:0 20px 40px rgba(0,0,0,0.2);
+">
+
+<p id="popupText"></p>
+<p style="margin-top:20px;">Patrycja & Patrick</p>
+
+</div>
+</div>
 </body>
 </html>
+
+// LOGIKA POKOI
+
+const lokalizacja = document.getElementById('lokalizacja');
+const pokoj = document.getElementById('pokoj');
+
+if(lokalizacja){
+
+lokalizacja.addEventListener('change', () => {
+
+    if(lokalizacja.value === 'osada') {
+        [...pokoj.options].forEach(opt => {
+            opt.disabled = opt.value !== '2';
+        });
+        pokoj.value = '2';
+    } else {
+        [...pokoj.options].forEach(opt => opt.disabled = false);
+    }
+
+});
+}
+
+// POPUP + FORM
+
+const form2 = document.getElementById('noclegForm');
+
+if(form2){
+
+form2.addEventListener('submit', async function(e){
+
+e.preventDefault();
+
+await fetch(form2.action,{
+method:'POST',
+body:new FormData(form2),
+headers:{'Accept':'application/json'}
+});
+
+form2.reset();
+
+const popup = document.getElementById('popup');
+const text = document.getElementById('popupText');
+
+text.innerHTML = currentLang === "de"
+? "Danke, dass du diesen besonderen Tag mit uns verbringst ❤️"
+: "Dziękujemy, że jesteś z nami ❤️";
+
+popup.style.display = "flex";
+
+setTimeout(()=> popup.style.display="none", 4000);
+
+});
+}
+
