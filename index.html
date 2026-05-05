@@ -8,60 +8,162 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-body{margin:0;font-family:Montserrat;background:#fff;color:#222}
-header{
+
+html { scroll-behavior: smooth; }
+
+body {
+margin:0;
+font-family:'Montserrat',sans-serif;
+background:#fff;
+color:#222;
+line-height:1.7;
+}
+
+/* HEADER PREMIUM */
+
+header {
 height:100vh;
-background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
+background:
+linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
 url('https://images.unsplash.com/photo-1529636798458-92182e662485');
 background-size:cover;
-display:flex;align-items:center;justify-content:center;
-text-align:center;color:#fff;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
 }
-header h1{font-family:Playfair Display;font-size:64px;margin:0}
-section{padding:100px 20px;max-width:900px;margin:auto}
-h2{text-align:center;font-family:Playfair Display;margin-bottom:40px}
-p{text-align:center}
 
-.lang{position:fixed;top:20px;right:20px}
+.hero h1{
+font-family:'Playfair Display',serif;
+font-size:72px;
+margin:0;
+}
 
-table{width:100%;border-collapse:collapse;text-align:center}
+#subtitle{
+margin-top:20px;
+font-size:22px;
+letter-spacing:2px;
+opacity:.9;
+}
+
+.line{
+width:60px;
+height:1px;
+background:white;
+margin:20px auto;
+opacity:.7;
+}
+
+.date{
+font-size:22px;
+}
+
+.countdown{
+font-size:28px;
+margin-top:20px;
+}
+
+/* SEKCJE */
+
+section{
+padding:100px 20px;
+max-width:900px;
+margin:auto;
+}
+
+h2{
+text-align:center;
+font-family:'Playfair Display',serif;
+margin-bottom:40px;
+}
+
+p{text-align:center;font-size:18px}
+
+/* LANG */
+
+.lang{
+position:fixed;
+top:20px;
+right:20px;
+z-index:10;
+}
+
+/* TABELA */
+
+table{
+width:100%;
+border-collapse:collapse;
+text-align:center;
+margin-top:20px;
+}
+
 th,td{padding:12px}
 tr{border-bottom:1px solid #eee}
 tr:hover{background:#fafafa}
 
+/* FORM */
+
 .reservation-box{
-background:#fafafa;border-radius:14px;
-padding:30px;margin-top:30px;
-box-shadow:0 10px 30px rgba(0,0,0,0.05)
+background:#fafafa;
+padding:30px;
+border-radius:14px;
+margin-top:30px;
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
 }
 
 input,select{
-width:100%;padding:12px;margin:8px 0;
-border:1px solid #ddd;border-radius:8px;
+width:100%;
+padding:12px;
+margin:8px 0;
+border-radius:8px;
+border:1px solid #ddd;
 }
 
-input:focus,select:focus{border-color:#222;outline:none}
+input:focus,select:focus{
+border-color:#222;
+outline:none;
+}
 
 button{
-padding:14px;background:#222;color:#fff;
-border:none;border-radius:8px;cursor:pointer;
-transition:.3s
+padding:14px;
+background:#222;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+transition:.3s;
 }
+
 button:hover{background:#444}
 
+/* POPUP */
+
 #popup{
-position:fixed;top:0;left:0;width:100%;height:100%;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
 background:rgba(0,0,0,.4);
-display:none;align-items:center;justify-content:center;
+display:none;
+align-items:center;
+justify-content:center;
+z-index:999;
 }
+
 #popupBox{
-background:#fff;padding:40px;border-radius:16px;
-text-align:center;animation:fade .4s ease
+background:white;
+padding:40px;
+border-radius:16px;
+text-align:center;
+animation:fade .4s ease;
 }
+
 @keyframes fade{
 from{opacity:0;transform:scale(.9)}
 to{opacity:1;transform:scale(1)}
 }
+
 </style>
 </head>
 
@@ -73,17 +175,23 @@ to{opacity:1;transform:scale(1)}
 </div>
 
 <header>
-<div>
+<div class="hero">
 <h1>Patrick & Patrycja</h1>
-<div style="width:80px;height:1px;background:white;margin:20px auto;opacity:.7"></div>
-<p>05.09.2026 | 16:00</p>
-<div id="countdown"></div>
+<p id="subtitle">Soon the Bork's</p>
+<div class="line"></div>
+<p class="date">05.09.2026 | 16:00</p>
+<div class="countdown" id="countdown"></div>
 </div>
 </header>
 
+<!-- NIE ZMIENIAM TWOICH SEKCJI -->
+
 <section>
-<h2>Harmonogram</h2>
-<p>16:00 Ceremonia<br>17:00 Obiad<br>19:30 Tort<br>20:00 Pierwszy taniec</p>
+<h2 class="trans" data-pl="Harmonogram" data-de="Zeitplan"></h2>
+<p class="trans"
+data-pl="16:00 — Ceremonia Ślubna<br>17:00 — Obiad<br>18:00 — Życzenia<br>19:30 — Tort<br>20:00 — Pierwszy taniec<br>22:00 — II danie<br>00:00 — Oczepiny"
+data-de="16:00 — Trauung<br>17:00 — Abendessen<br>18:00 — Glückwünsche<br>19:30 — Torte<br>20:00 — Tanz<br>22:00 — Zweites Gericht<br>00:00 — Spiele">
+</p>
 </section>
 
 <section>
@@ -118,7 +226,7 @@ to{opacity:1;transform:scale(1)}
 
 <p>
 1. Przyjęcie ślubne<br>
-2. Hotel Ostaniec – 36 pokoi 2-osobowych + 6 Studio (2 pokoje, 1 łazienka)<br>
+2. Hotel Ostaniec – 36 pokoi 2-osobowych + 6 Studio<br>
 3. Osada Zborów – tylko pokoje 2-osobowe
 </p>
 
@@ -172,18 +280,39 @@ to{opacity:1;transform:scale(1)}
 
 <script>
 
-let lang="pl";
-function setLang(l){lang=l}
+let currentLang="pl";
+
+function setLang(lang){
+currentLang=lang;
+document.querySelectorAll('.trans').forEach(el=>{
+el.innerHTML=el.getAttribute('data-'+lang);
+});
+updateCountdown();
+}
+
+/* COUNTDOWN */
 
 const wedding=new Date("Sep 5 2026 16:00").getTime();
-setInterval(()=>{
-let d=wedding-new Date().getTime();
-let days=Math.floor(d/86400000);
-document.getElementById("countdown").innerHTML=
-days+" dni";
-},1000);
 
-/* daty */
+function updateCountdown(){
+let now=new Date().getTime();
+let d=wedding-now;
+
+let days=Math.floor(d/(1000*60*60*24));
+let h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+let m=Math.floor((d%(1000*60*60))/(1000*60));
+
+document.getElementById("countdown").innerHTML=
+currentLang==="de"
+? days+" Tage "+h+" Std "+m+" Min"
+: days+" dni "+h+" godz "+m+" min";
+}
+
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+/* DATY */
+
 const od=document.getElementById("od");
 const doo=document.getElementById("do");
 
@@ -193,7 +322,8 @@ d.setDate(d.getDate()+1);
 doo.value=d.toISOString().split('T')[0];
 });
 
-/* osada */
+/* OSADA */
+
 const lok=document.getElementById("lok");
 const pok=document.getElementById("pok");
 
@@ -206,20 +336,24 @@ pok.querySelector('[value="studio"]').disabled=false;
 }
 });
 
-/* form */
+/* FORM */
+
 const f=document.getElementById("form");
+
 f.addEventListener("submit",async e=>{
 e.preventDefault();
 await fetch(f.action,{method:"POST",body:new FormData(f)});
 f.reset();
 
-txt.innerHTML=lang==="de"
-?"Danke dass du mit uns feierst ❤️"
-:"Dziękujemy że jesteś z nami ❤️";
+txt.innerHTML=currentLang==="de"
+?"Danke, dass du mit uns feierst ❤️"
+:"Dziękujemy, że jesteś z nami ❤️";
 
 popup.style.display="flex";
 popup.onclick=()=>popup.style.display="none";
 });
+
+setLang('pl');
 
 </script>
 
