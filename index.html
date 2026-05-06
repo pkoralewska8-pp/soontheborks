@@ -57,6 +57,19 @@ body {
 .lang button:hover,
 .lang button.active { background: rgba(255,255,255,0.3); }
 
+/* Scrolled: dunkle Buttons auf hellem Hintergrund */
+.lang.scrolled button {
+  background: rgba(26,23,20,0.08);
+  border: 1px solid rgba(26,23,20,0.25);
+  color: var(--dark);
+}
+
+.lang.scrolled button:hover,
+.lang.scrolled button.active {
+  background: var(--dark);
+  color: white;
+}
+
 /* ── HERO ── */
 header {
   height: 100vh;
@@ -712,6 +725,18 @@ footer .footer-names {
 </div>
 
 <script>
+// ── SCROLL: Lang-Buttons umschalten ──
+const langDiv = document.querySelector('.lang');
+const heroHeight = window.innerHeight;
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > heroHeight * 0.85) {
+    langDiv.classList.add('scrolled');
+  } else {
+    langDiv.classList.remove('scrolled');
+  }
+});
+
 // ── DATA ──
 const schedule = {
   pl: [
