@@ -210,7 +210,7 @@ h2 {
 
 h2 em { font-style: italic; color: var(--gold); }
 
-p { text-align: center; font-size: 17px; color: var(--mid); }
+p { text-align: center; font-size: 19px; color: #3a3330; font-weight: 300; }
 
 /* ── SCHEDULE ── */
 .schedule {
@@ -661,12 +661,20 @@ footer .footer-names {
 <section>
   <h2 class="trans" data-pl="Zdjęcia z wesela" data-de="Hochzeitsfotos"></h2>
   <p class="trans"
-    data-pl="Podziel się z nami zdjęciami z wesela."
-    data-de="Teilt eure Fotos mit uns."></p>
+    data-pl="Zeskanuj kod QR lub kliknij przycisk, aby przejść do galerii."
+    data-de="Scanne den QR-Code oder klicke den Button, um zur Galerie zu gelangen."></p>
   <div class="qr-wrap" style="margin-top:32px;">
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://photos.app.goo.gl/XJbj8UqFY39CLZpJA"
-         alt="QR Code" width="200" height="200">
-    <p style="font-size:13px; color:#b0a89e; letter-spacing:1px;">photos.app.goo.gl</p>
+    <a href="https://photos.app.goo.gl/XJbj8UqFY39CLZpJA" target="_blank" rel="noopener">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://photos.app.goo.gl/XJbj8UqFY39CLZpJA"
+           alt="QR Code – Galeria / Galerie" width="220" height="220"
+           style="border: 1px solid var(--border); padding: 16px; background: white; border-radius: 4px; display:block;">
+    </a>
+    <a href="https://photos.app.goo.gl/XJbj8UqFY39CLZpJA" target="_blank" rel="noopener"
+       style="display:inline-block; margin-top:20px; padding:13px 32px; background:var(--dark); color:white; text-decoration:none; font-family:'Jost',sans-serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; border-radius:3px; transition:background .3s;"
+       onmouseover="this.style.background='var(--gold)'" onmouseout="this.style.background='var(--dark)'"
+       class="trans"
+       data-pl="OTWÓRZ GALERIĘ"
+       data-de="GALERIE ÖFFNEN">OTWÓRZ GALERIĘ</a>
   </div>
 </section>
 
