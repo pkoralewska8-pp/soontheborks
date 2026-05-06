@@ -838,21 +838,6 @@ document.getElementById('reservationForm').addEventListener('submit', async (e) 
     });
   } catch(_) {}
 
-  // Also send directly to pkoralewska8@gmail.com via mailto fallback
-  const subject = encodeURIComponent(`Rezerwacja noclegu – ${name}`);
-  const body = encodeURIComponent(
-    `Nowa rezerwacja / Neue Buchung:\n\n` +
-    `Imię / Name: ${name}\n` +
-    `E-mail: ${email}\n` +
-    `Obiekt / Unterkunft: ${hotel}\n` +
-    `Pokój / Zimmer: ${room}\n` +
-    `Przyjazd / Anreise: ${from}\n` +
-    `Odjazd / Abreise: ${to}`
-  );
-
-  // Open mailto as fallback for direct delivery
-  window.location.href = `mailto:pkoralewska8@gmail.com?subject=${subject}&body=${body}`;
-
   document.getElementById('reservationForm').reset();
 
   // Show popup
