@@ -5,408 +5,857 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Patrick & Patrycja</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
 
 <style>
+
+:root {
+  --gold: #b8975a;
+  --gold-light: #d4b483;
+  --cream: #faf8f5;
+  --dark: #1a1714;
+  --mid: #5a5147;
+  --border: rgba(184,151,90,0.25);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
 
 body {
-margin:0;
-font-family:'Montserrat',sans-serif;
-background:#fff;
-color:#222;
-line-height:1.7;
+  font-family: 'Jost', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  line-height: 1.75;
+  font-weight: 300;
 }
 
-/* HEADER PREMIUM */
+/* ── LANG TOGGLE ── */
+.lang {
+  position: fixed;
+  top: 22px;
+  right: 24px;
+  z-index: 100;
+  display: flex;
+  gap: 8px;
+}
 
+.lang button {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: white;
+  padding: 6px 14px;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all .3s;
+  border-radius: 2px;
+}
+
+.lang button:hover,
+.lang button.active { background: rgba(255,255,255,0.3); }
+
+/* ── HERO ── */
 header {
-height:100vh;
-background:
-linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
-url('https://images.unsplash.com/photo-1529636798458-92182e662485');
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-color:white;
+  height: 100vh;
+  min-height: 600px;
+  background:
+    linear-gradient(180deg, rgba(26,23,20,0.5) 0%, rgba(26,23,20,0.3) 60%, rgba(26,23,20,0.55) 100%),
+    url('https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1800&q=80');
+  background-size: cover;
+  background-position: center 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  position: relative;
 }
 
-.hero h1{
-font-family:'Playfair Display',serif;
-font-size:72px;
-margin:0;
+.hero {
+  animation: heroFade 1.6s ease both;
 }
 
-#subtitle{
-margin-top:20px;
-font-size:22px;
-letter-spacing:2px;
-opacity:.9;
+@keyframes heroFade {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.line{
-width:60px;
-height:1px;
-background:white;
-margin:20px auto;
-opacity:.7;
+.hero-eyebrow {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  opacity: .65;
+  margin-bottom: 24px;
 }
 
-.date{
-font-size:22px;
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 9vw, 96px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: 2px;
 }
 
-.countdown{
-font-size:28px;
-margin-top:20px;
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-light);
 }
 
-/* SEKCJE */
-
-section{
-padding:100px 20px;
-max-width:900px;
-margin:auto;
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 28px auto;
+  opacity: .6;
 }
 
-h2{
-text-align:center;
-font-family:'Playfair Display',serif;
-margin-bottom:40px;
+.ornament::before, .ornament::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: white;
 }
 
-p{text-align:center;font-size:18px}
+.ornament span { font-size: 16px; }
 
-/* LANG */
-
-.lang{
-position:fixed;
-top:20px;
-right:20px;
-z-index:10;
+.hero-date {
+  font-size: 16px;
+  letter-spacing: 4px;
+  font-weight: 200;
+  margin-bottom: 28px;
 }
 
-/* TABELA */
-
-table{
-width:100%;
-border-collapse:collapse;
-text-align:center;
-margin-top:20px;
+.countdown {
+  display: inline-flex;
+  gap: 32px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 16px 36px;
+  border-radius: 2px;
+  backdrop-filter: blur(8px);
 }
 
-th,td{padding:12px}
-tr{border-bottom:1px solid #eee}
-tr:hover{background:#fafafa}
-
-/* FORM */
-
-.reservation-box{
-background:#fafafa;
-padding:30px;
-border-radius:14px;
-margin-top:30px;
-box-shadow:0 10px 30px rgba(0,0,0,0.05);
+.cd-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-input,select{
-width:100%;
-padding:12px;
-margin:8px 0;
-border-radius:8px;
-border:1px solid #ddd;
+.cd-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1;
 }
 
-input:focus,select:focus{
-border-color:#222;
-outline:none;
+.cd-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: .55;
+  margin-top: 4px;
 }
 
-button{
-padding:14px;
-background:#222;
-color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
-transition:.3s;
+/* ── DIVIDER ── */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 0;
+  color: var(--gold);
+  opacity: .5;
 }
 
-button:hover{background:#444}
-
-/* POPUP */
-
-#popup{
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,.4);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:999;
+.divider::before, .divider::after {
+  content: '';
+  display: block;
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  max-width: 200px;
 }
 
-#popupBox{
-background:white;
-padding:40px;
-border-radius:16px;
-text-align:center;
-animation:fade .4s ease;
+/* ── SECTIONS ── */
+section {
+  padding: 90px 24px;
+  max-width: 820px;
+  margin: auto;
 }
 
-@keyframes fade{
-from{opacity:0;transform:scale(.9)}
-to{opacity:1;transform:scale(1)}
+section + section {
+  border-top: 1px solid var(--border);
+}
+
+h2 {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin-bottom: 36px;
+  color: var(--dark);
+}
+
+h2 em { font-style: italic; color: var(--gold); }
+
+p { text-align: center; font-size: 17px; color: var(--mid); }
+
+/* ── SCHEDULE ── */
+.schedule {
+  list-style: none;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.schedule li {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 16px;
+  color: var(--mid);
+}
+
+.schedule li:last-child { border-bottom: none; }
+
+.schedule .time {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: var(--gold);
+  font-weight: 400;
+  text-align: right;
+}
+
+/* ── LOCATION ── */
+.location-map {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 28px;
+  display: block;
+  border: 1px solid var(--border);
+}
+
+/* ── ACCOMMODATION TABLE ── */
+.accom-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 32px;
+  box-shadow: 0 4px 40px rgba(26,23,20,0.06);
+}
+
+.accom-card table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 15px;
+}
+
+.accom-card th {
+  background: var(--dark);
+  color: var(--gold-light);
+  padding: 14px 16px;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  letter-spacing: 2px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.accom-card td {
+  padding: 13px 16px;
+  color: var(--mid);
+  border-bottom: 1px solid var(--border);
+}
+
+.accom-card tr:last-child td { border-bottom: none; }
+.accom-card tr:hover td { background: #faf6ef; }
+
+.hotel-row td {
+  background: #f7f4ef;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  color: var(--dark);
+  padding: 10px 16px;
+}
+
+/* ── FORM ── */
+.form-wrap {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 40px;
+  margin-top: 32px;
+  box-shadow: 0 4px 40px rgba(26,23,20,0.06);
+}
+
+.form-wrap h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--dark);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.field label {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.field input,
+.field select {
+  border: 1px solid #e0d9cf;
+  border-radius: 3px;
+  padding: 12px 14px;
+  font-family: 'Jost', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--dark);
+  background: var(--cream);
+  width: 100%;
+  transition: border-color .2s;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--gold);
+  outline: none;
+  background: white;
+}
+
+.form-wrap button[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  background: var(--dark);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background .3s;
+}
+
+.form-wrap button[type="submit"]:hover { background: var(--gold); }
+
+/* ── QR ── */
+.qr-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.qr-wrap img {
+  border: 1px solid var(--border);
+  padding: 16px;
+  background: white;
+  border-radius: 4px;
+}
+
+/* ── CONTACT ── */
+.contact-grid {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.contact-person {
+  text-align: center;
+}
+
+.contact-person .name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--dark);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.contact-person a {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.contact-person a:hover { text-decoration: underline; }
+
+/* ── POPUP ── */
+#popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(26,23,20,.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  backdrop-filter: blur(4px);
+}
+
+#popupBox {
+  background: white;
+  padding: 52px 44px;
+  border-radius: 6px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: popIn .4s ease both;
+  border-top: 3px solid var(--gold);
+}
+
+#popupBox .popup-icon { font-size: 36px; margin-bottom: 16px; }
+
+#popupBox p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--dark);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+#popupBox .popup-sub {
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  color: var(--mid);
+  letter-spacing: 1px;
+}
+
+#popupBox button {
+  margin-top: 24px;
+  padding: 10px 28px;
+  background: var(--dark);
+  color: white;
+  border: none;
+  border-radius: 2px;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(.93) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 48px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: #b0a89e;
+  letter-spacing: 1px;
+}
+
+footer .footer-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 6px;
 }
 
 </style>
 </head>
-
 <body>
 
+<!-- LANG -->
 <div class="lang">
-<button onclick="setLang('pl')">PL</button>
-<button onclick="setLang('de')">DE</button>
+  <button onclick="setLang('pl')" id="btn-pl" class="active">PL</button>
+  <button onclick="setLang('de')" id="btn-de">DE</button>
 </div>
 
+<!-- HERO -->
 <header>
-<div class="hero">
-<h1>Patrick & Patrycja</h1>
-<p id="subtitle">Soon the Bork's</p>
-<div class="line"></div>
-<p class="date">05.09.2026 | 16:00</p>
-<div class="countdown" id="countdown"></div>
-</div>
+  <div class="hero">
+    <p class="hero-eyebrow trans" data-pl="Zapraszamy na nasze wesele" data-de="Wir laden euch zu unserer Hochzeit ein"></p>
+    <h1>Patrick <em>&</em> Patrycja</h1>
+    <div class="ornament"><span>✦</span></div>
+    <p class="hero-date">05 · 09 · 2026 &nbsp;|&nbsp; 16:00</p>
+    <div class="countdown">
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-d">—</span>
+        <span class="cd-label trans" data-pl="Dni" data-de="Tage"></span>
+      </div>
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-h">—</span>
+        <span class="cd-label trans" data-pl="Godz" data-de="Std"></span>
+      </div>
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-m">—</span>
+        <span class="cd-label trans" data-pl="Min" data-de="Min"></span>
+      </div>
+    </div>
+  </div>
 </header>
 
-<!-- NIE ZMIENIAM TWOICH SEKCJI -->
-
-<section>
-<h2 class="trans" data-pl="Harmonogram" data-de="Zeitplan"></h2>
-<p class="trans"
-data-pl="16:00 — Ceremonia Ślubna<br>17:00 — Obiad<br>18:00 — Życzenia<br>19:30 — Tort<br>20:00 — Pierwszy taniec<br>22:00 — II danie<br>00:00 — Oczepiny"
-data-de="16:00 — Trauung<br>17:00 — Abendessen<br>18:00 — Glückwünsche<br>19:30 — Torte<br>20:00 — Tanz<br>22:00 — Zweites Gericht<br>00:00 — Spiele">
-</p>
+<!-- HARMONOGRAM -->
+<section id="harmonogram">
+  <h2 class="trans" data-pl="Harmonogram" data-de="Zeitplan"></h2>
+  <ul class="schedule" id="schedule-list"></ul>
 </section>
 
+<!-- 10-LECIE -->
 <section>
-<h2 class="trans"
-data-pl="10-lecie naszego Związku"
-data-de="10-jähriges Jubiläum unserer Beziehung"></h2>
-
-<p class="trans"
-data-pl="Zapraszamy w niedzielę od 15:00 na grilla i tańce."
-data-de="Wir laden euch am Sonntag ab 15:00 Uhr zu Grillen und Tanzen ein.">
-</p>
+  <h2 class="trans"
+    data-pl="10-lecie naszego Związku"
+    data-de="10-jähriges Jubiläum unserer Beziehung"></h2>
+  <p class="trans"
+    data-pl="Zapraszamy w niedzielę od 15:00 na grilla i tańce."
+    data-de="Wir laden euch am Sonntag ab 15:00 Uhr zu Grillen und Tanzen ein."></p>
 </section>
 
+<!-- ZAMIAST KWIATÓW -->
 <section>
-<h2 class="trans"
-data-pl="Zamiast kwiatów"
-data-de="Statt Blumen"></h2>
-
-<p class="trans"
-data-pl="Zachęcamy do wsparcia celu charytatywnego."
-data-de="Wir bitten euch, statt Blumen einen guten Zweck zu unterstützen.">
-</p>
+  <h2 class="trans" data-pl="Zamiast kwiatów" data-de="Statt Blumen"></h2>
+  <p class="trans"
+    data-pl="Zachęcamy do wsparcia celu charytatywnego."
+    data-de="Wir bitten euch, statt Blumen einen guten Zweck zu unterstützen."></p>
 </section>
 
+<!-- ANIMATOR -->
 <section>
-<h2 class="trans"
-data-pl="Animator dla dzieci"
-data-de="Kinderanimation"></h2>
-
-<p class="trans"
-data-pl="Animator dla dzieci od 19:00 do 22:00."
-data-de="Kinderanimation von 19:00 bis 22:00 Uhr.">
-</p>
+  <h2 class="trans" data-pl="Animator dla dzieci" data-de="Kinderanimation"></h2>
+  <p class="trans"
+    data-pl="Animator dla dzieci od 19:00 do 22:00."
+    data-de="Kinderanimation von 19:00 bis 22:00 Uhr."></p>
 </section>
 
+<!-- MENU VEGE -->
 <section>
-<h2 class="trans"
-data-pl="Menu Vege"
-data-de="Vegetarisches Menü"></h2>
-
-<p class="trans"
-data-pl="Prosimy o kontakt w sprawie menu wegetariańskiego."
-data-de="Bitte kontaktiert uns, wenn ihr ein vegetarisches Menü wünscht.">
-</p>
+  <h2 class="trans" data-pl="Menu Vege" data-de="Vegetarisches Menü"></h2>
+  <p class="trans"
+    data-pl="Prosimy o kontakt w sprawie menu wegetariańskiego."
+    data-de="Bitte kontaktiert uns, wenn ihr ein vegetarisches Menü wünscht."></p>
 </section>
 
+<!-- LOKALIZACJA -->
 <section>
-<h2 class="trans"
-data-pl="Zdjęcia z wesela"
-data-de="Hochzeitsfotos"></h2>
-
-<p class="trans"
-data-pl="Podziel się z nami zdjęciami z wesela."
-data-de="Teilt eure Fotos mit uns.">
-</p>
-
-<img class="qr"
-src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://photos.app.goo.gl/XJbj8UqFY39CLZpJA"
-style="display:block; margin:30px auto;">
+  <h2 class="trans" data-pl="Lokalizacja" data-de="Ort"></h2>
+  <img src="mapa_noclegi.jpg" class="location-map" alt="Mapa">
+  <p class="trans"
+    data-pl="1. Przyjęcie ślubne<br>2. Hotel Ostaniec – 36 pokoi 2-osobowych i 6 Studio (2 pokoje + 1 łazienka)<br>3. Osada Zborów – tylko pokoje 2-osobowe"
+    data-de="1. Hochzeitsfeier<br>2. Hotel Ostaniec – 36 Doppelzimmer und 6 Studios (2 Zimmer mit einem Bad)<br>3. Osada Zborów – nur Doppelzimmer"></p>
 </section>
 
+<!-- NOCLEGI -->
 <section>
-<h2 class="trans"
-data-pl="Lokalizacja"
-data-de="Ort"></h2>
+  <h2 class="trans" data-pl="Noclegi" data-de="Unterkunft"></h2>
 
-<img src="mapa_noclegi.jpg" style="width:100%;margin-bottom:20px;">
+  <!-- PRICE TABLE -->
+  <div class="accom-card">
+    <table>
+      <thead>
+        <tr>
+          <th class="trans" data-pl="Zakwaterowanie / Unterkunft" data-de="Unterkunft / Zakwaterowanie"></th>
+          <th>Nd–Czw / So–Do</th>
+          <th>Pt–Sob / Fr–Sa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hotel-row"><td colspan="3">Hotel Ostaniec</td></tr>
+        <tr>
+          <td class="trans" data-pl="Pokój 2-osobowy / Doppelzimmer" data-de="Doppelzimmer / Pokój 2-osobowy"></td>
+          <td>323 zł</td><td>374 zł</td>
+        </tr>
+        <tr>
+          <td class="trans" data-pl="Studio / Studio" data-de="Studio / Studio"></td>
+          <td>616 zł</td><td>731 zł</td>
+        </tr>
+        <tr class="hotel-row"><td colspan="3">Osada Zborów</td></tr>
+        <tr>
+          <td class="trans" data-pl="Pokój 2-osobowy / Doppelzimmer" data-de="Doppelzimmer / Pokój 2-osobowy"></td>
+          <td>306 zł</td><td>320 zł</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<p class="trans"
-data-pl="1. Przyjęcie ślubne<br>2. Hotel Ostaniec – 36 pokoi 2-osobowych i 6 Studio (2 pokoje + 1 łazienka)<br>3. Osada Zborów – tylko pokoje 2-osobowe"
-data-de="1. Hochzeitsfeier<br>2. Hotel Ostaniec – 36 Doppelzimmer und 6 Studios (2 Zimmer mit einem Bad)<br>3. Osada Zborów – nur Doppelzimmer">
-</p>
+  <!-- RESERVATION FORM -->
+  <div class="form-wrap">
+    <h3 class="trans" data-pl="Rezerwacja noclegu" data-de="Unterkunft buchen"></h3>
+
+    <form id="reservationForm">
+      <div class="form-row">
+        <div class="field">
+          <label class="trans" data-pl="Imię i nazwisko" data-de="Vor- und Nachname"></label>
+          <input type="text" id="f-name" required placeholder="—">
+        </div>
+        <div class="field">
+          <label>E-mail</label>
+          <input type="email" id="f-email" required placeholder="—">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label class="trans" data-pl="Obiekt" data-de="Unterkunft"></label>
+          <select id="f-hotel">
+            <option value="Hotel Ostaniec">Hotel Ostaniec</option>
+            <option value="Osada Zborów">Osada Zborów</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="trans" data-pl="Typ pokoju" data-de="Zimmertyp"></label>
+          <select id="f-room">
+            <option value="2-osobowy / Doppelzimmer">2-osobowy / Doppelzimmer</option>
+            <option value="Studio">Studio</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label class="trans" data-pl="Data przyjazdu" data-de="Anreisedatum"></label>
+          <input type="date" id="f-from" required>
+        </div>
+        <div class="field">
+          <label class="trans" data-pl="Data odjazdu" data-de="Abreisedatum"></label>
+          <input type="date" id="f-to" required>
+        </div>
+      </div>
+
+      <button type="submit" class="trans"
+        data-pl="ZAREZERWUJ NOCLEG"
+        data-de="UNTERKUNFT BUCHEN"></button>
+    </form>
+  </div>
 </section>
 
+<!-- QR – Zdjęcia z wesela -->
 <section>
-<h2 class="trans"
-data-pl="Noclegi"
-data-de="Unterkunft"></h2>
-
-<div class="reservation-box">
-
-<table>
-<tr><th></th><th>Nd–Czw</th><th>Pt–Sob</th></tr>
-<tr><td><strong>Hotel Ostaniec</strong></td><td></td><td></td></tr>
-<tr><td>2-osobowy</td><td>323 zł</td><td>374 zł</td></tr>
-<tr><td>Studio</td><td>616 zł</td><td>731 zł</td></tr>
-<tr><td><strong>Osada Zborów</strong></td><td></td><td></td></tr>
-<tr><td>2-osobowy</td><td>306 zł</td><td>320 zł</td></tr>
-</table>
-
-<form id="form" action="https://formspree.io/f/xzzpqqpb" method="POST">
-
-<input type="text" name="Imie" placeholder="Imię i nazwisko" required>
-<input type="email" name="Email" placeholder="E-mail" required>
-
-<select id="lok">
-<option value="hotel">Hotel Ostaniec</option>
-<option value="osada">Osada Zborów</option>
-</select>
-
-<select id="pok">
-<option value="2">2-osobowy</option>
-<option value="studio">Studio</option>
-</select>
-
-<input type="date" id="od" required>
-<input type="date" id="do" required>
-
-<button type="submit">Rezerwuj</button>
-
-</form>
-
-</div>
+  <h2 class="trans" data-pl="Zdjęcia z wesela" data-de="Hochzeitsfotos"></h2>
+  <p class="trans"
+    data-pl="Podziel się z nami zdjęciami z wesela."
+    data-de="Teilt eure Fotos mit uns."></p>
+  <div class="qr-wrap" style="margin-top:32px;">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://photos.app.goo.gl/XJbj8UqFY39CLZpJA"
+         alt="QR Code" width="200" height="200">
+    <p style="font-size:13px; color:#b0a89e; letter-spacing:1px;">photos.app.goo.gl</p>
+  </div>
 </section>
 
+<!-- KONTAKT DO ŚWIADKÓW -->
+<section>
+  <h2 class="trans"
+    data-pl="Kontakt do naszych Świadków"
+    data-de="Kontakt zu unseren Trauzeugen"></h2>
+  <div class="contact-grid">
+    <div class="contact-person">
+      <span class="name">Łukasz</span>
+      <a href="tel:+48501977997">+48 501 977 997</a>
+    </div>
+    <div class="contact-person">
+      <span class="name">Michał</span>
+      <a href="tel:+48503833619">+48 503 833 619</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-names">Patrick & Patrycja</span>
+  05 · 09 · 2026
+</footer>
+
+<!-- POPUP -->
 <div id="popup">
-<div id="popupBox">
-<p id="txt"></p>
-<p>Patrycja & Patrick</p>
-</div>
+  <div id="popupBox">
+    <div class="popup-icon">💌</div>
+    <p id="popup-msg"></p>
+    <p class="popup-sub">Patrick & Patrycja</p>
+    <button onclick="document.getElementById('popup').style.display='none'" class="trans"
+      data-pl="Zamknij" data-de="Schließen"></button>
+  </div>
 </div>
 
 <script>
+// ── DATA ──
+const schedule = {
+  pl: [
+    ["16:00","Ceremonia ślubna"],
+    ["17:00","Obiad"],
+    ["18:00","Życzenia"],
+    ["19:30","Tort"],
+    ["20:00","Pierwszy taniec"],
+    ["22:00","II danie"],
+    ["00:00","Oczepiny"],
+  ],
+  de: [
+    ["16:00","Trauung"],
+    ["17:00","Abendessen"],
+    ["18:00","Glückwünsche"],
+    ["19:30","Torte"],
+    ["20:00","Erster Tanz"],
+    ["22:00","Zweites Gericht"],
+    ["00:00","Feierliche Spiele"],
+  ]
+};
 
-let currentLang="pl";
+let currentLang = 'pl';
 
-function setLang(lang){
-currentLang=lang;
-document.querySelectorAll('.trans').forEach(el=>{
-el.innerHTML=el.getAttribute('data-'+lang);
-});
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.trans').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (val !== null) el.innerHTML = val;
+  });
+  document.getElementById('btn-pl').classList.toggle('active', lang === 'pl');
+  document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+
+  // Schedule
+  const list = document.getElementById('schedule-list');
+  list.innerHTML = schedule[lang].map(([t, e]) =>
+    `<li><span class="time">${t}</span><span>${e}</span></li>`
+  ).join('');
+}
+
+// ── COUNTDOWN ──
+const wedding = new Date("2026-09-05T16:00:00").getTime();
+
+function updateCountdown() {
+  const diff = wedding - Date.now();
+  if (diff <= 0) {
+    document.querySelector('.countdown').textContent = '🎉';
+    return;
+  }
+  document.getElementById('cd-d').textContent = Math.floor(diff / 86400000);
+  document.getElementById('cd-h').textContent = Math.floor((diff % 86400000) / 3600000);
+  document.getElementById('cd-m').textContent = Math.floor((diff % 3600000) / 60000);
+}
+
+setInterval(updateCountdown, 1000);
 updateCountdown();
-}
 
-/* COUNTDOWN */
+// ── HOTEL / ROOM LOGIC ──
+const fHotel = document.getElementById('f-hotel');
+const fRoom  = document.getElementById('f-room');
+const studioOpt = fRoom.querySelector('[value="Studio"]');
 
-const wedding=new Date("Sep 5 2026 16:00").getTime();
-
-function updateCountdown(){
-let now=new Date().getTime();
-let d=wedding-now;
-
-let days=Math.floor(d/(1000*60*60*24));
-let h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
-let m=Math.floor((d%(1000*60*60))/(1000*60));
-
-document.getElementById("countdown").innerHTML=
-currentLang==="de"
-? days+" Tage "+h+" Std "+m+" Min"
-: days+" dni "+h+" godz "+m+" min";
-}
-
-setInterval(updateCountdown,1000);
-updateCountdown();
-
-/* DATY */
-
-const od=document.getElementById("od");
-const doo=document.getElementById("do");
-
-od.addEventListener("change",()=>{
-let d=new Date(od.value);
-d.setDate(d.getDate()+1);
-doo.value=d.toISOString().split('T')[0];
+fHotel.addEventListener('change', () => {
+  if (fHotel.value === 'Osada Zborów') {
+    fRoom.value = '2-osobowy / Doppelzimmer';
+    studioOpt.disabled = true;
+    studioOpt.hidden = true;
+  } else {
+    studioOpt.disabled = false;
+    studioOpt.hidden = false;
+  }
 });
 
-/* OSADA */
+// ── DATE AUTO-FILL ──
+const fFrom = document.getElementById('f-from');
+const fTo   = document.getElementById('f-to');
 
-const lok=document.getElementById("lok");
-const pok=document.getElementById("pok");
-
-lok.addEventListener("change",()=>{
-if(lok.value==="osada"){
-pok.value="2";
-pok.querySelector('[value="studio"]').disabled=true;
-}else{
-pok.querySelector('[value="studio"]').disabled=false;
-}
+fFrom.addEventListener('change', () => {
+  if (!fFrom.value) return;
+  const next = new Date(fFrom.value);
+  next.setDate(next.getDate() + 1);
+  fTo.value = next.toISOString().split('T')[0];
 });
 
-/* FORM */
+// ── FORM SUBMIT → Email ──
+document.getElementById('reservationForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-const f=document.getElementById("form");
+  const name   = document.getElementById('f-name').value;
+  const email  = document.getElementById('f-email').value;
+  const hotel  = fHotel.value;
+  const room   = fRoom.value;
+  const from   = fFrom.value;
+  const to     = fTo.value;
 
-f.addEventListener("submit",async e=>{
-e.preventDefault();
-await fetch(f.action,{method:"POST",body:new FormData(f)});
-f.reset();
+  // Build table HTML for email
+  const tableHTML = `
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse;font-family:sans-serif;font-size:14px;">
+  <tr><th style="background:#1a1714;color:#d4b483;padding:10px 16px;">Pole / Feld</th><th style="background:#1a1714;color:#d4b483;padding:10px 16px;">Wartość / Wert</th></tr>
+  <tr><td>Imię / Name</td><td>${name}</td></tr>
+  <tr><td>E-mail</td><td>${email}</td></tr>
+  <tr><td>Obiekt / Unterkunft</td><td>${hotel}</td></tr>
+  <tr><td>Pokój / Zimmer</td><td>${room}</td></tr>
+  <tr><td>Przyjazd / Anreise</td><td>${from}</td></tr>
+  <tr><td>Odjazd / Abreise</td><td>${to}</td></tr>
+</table>`;
 
-txt.innerHTML=currentLang==="de"
-?"Danke, dass du mit uns feierst ❤️"
-:"Dziękujemy, że jesteś z nami ❤️";
+  // Send via EmailJS-compatible approach using formspree
+  const payload = new FormData();
+  payload.append('_replyto', email);
+  payload.append('_subject', `Rezerwacja noclegu – ${name}`);
+  payload.append('Gość / Gast', name);
+  payload.append('E-mail', email);
+  payload.append('Obiekt / Unterkunft', hotel);
+  payload.append('Pokój / Zimmer', room);
+  payload.append('Przyjazd / Anreise', from);
+  payload.append('Odjazd / Abreise', to);
 
-popup.style.display="flex";
-popup.onclick=()=>popup.style.display="none";
+  try {
+    await fetch('https://formspree.io/f/xzzpqqpb', {
+      method: 'POST',
+      body: payload,
+      headers: { 'Accept': 'application/json' }
+    });
+  } catch(_) {}
+
+  // Also send directly to pkoralewska8@gmail.com via mailto fallback
+  const subject = encodeURIComponent(`Rezerwacja noclegu – ${name}`);
+  const body = encodeURIComponent(
+    `Nowa rezerwacja / Neue Buchung:\n\n` +
+    `Imię / Name: ${name}\n` +
+    `E-mail: ${email}\n` +
+    `Obiekt / Unterkunft: ${hotel}\n` +
+    `Pokój / Zimmer: ${room}\n` +
+    `Przyjazd / Anreise: ${from}\n` +
+    `Odjazd / Abreise: ${to}`
+  );
+
+  // Open mailto as fallback for direct delivery
+  window.location.href = `mailto:pkoralewska8@gmail.com?subject=${subject}&body=${body}`;
+
+  document.getElementById('reservationForm').reset();
+
+  // Show popup
+  document.getElementById('popup-msg').innerHTML =
+    currentLang === 'de'
+      ? 'Danke, dass du mit uns feierst! ❤️<br><small style="font-size:15px;color:#5a5147;">Dziękujemy, że będziesz z nami świętować!</small>'
+      : 'Dziękujemy, że będziesz z nami świętować! ❤️<br><small style="font-size:15px;color:#5a5147;">Danke, dass du mit uns feierst!</small>';
+
+  const popup = document.getElementById('popup');
+  popup.style.display = 'flex';
+  popup.onclick = (ev) => { if (ev.target === popup) popup.style.display = 'none'; };
 });
 
+// Init
 setLang('pl');
-
 </script>
-<section>
 
-<section>
-
-<h2 class="trans"
-data-pl="Kontakt do naszych Świadków"
-data-de="Kontakt zu unseren Trauzeugen">
-</h2>
-
-<p>
-Łukasz — <a href="tel:+48501977997">+48 501 977 997</a><br>
-Michał — <a href="tel:+48503833619">+48 503 833 619</a>
-</p>
-
-</section>
-  
 </body>
 </html>
