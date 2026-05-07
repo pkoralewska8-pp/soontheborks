@@ -225,6 +225,9 @@ h2 em { font-style: italic; color: var(--gold); }
 
 p { text-align: center; font-size: 19px; color: #3a3330; font-weight: 300; }
 
+/* ── SENTENCE BREAKS after period ── */
+p .sent { display: block; }
+
 /* ── SCHEDULE ── */
 .schedule {
   list-style: none;
@@ -549,8 +552,8 @@ footer .footer-names {
     data-pl="10-lecie naszego Związku"
     data-de="10-jähriges Jubiläum unserer Beziehung"></h2>
   <p class="trans"
-    data-pl="Zapraszamy w niedzielę od 15:00 na grilla i tańce."
-    data-de="Wir laden euch am Sonntag ab 15:00 Uhr zu Grillen und Tanzen ein."></p>
+    data-pl="Zapraszamy w niedzielę od godziny 15:00 na luźne tańce i grilla.<br>Poprawiny odbędą się w tym samym miejscu co wesele."
+    data-de="Wir laden euch am Sonntag ab 15:00 Uhr zu lockerem Tanzen und Grillen ein.<br>Die Nachfeier findet am selben Ort statt."></p>
 </section>
 
 <!-- ZAMIAST KWIATÓW -->
@@ -583,7 +586,14 @@ footer .footer-names {
    <p class="trans"
    data-pl="Resort Jurajski<br>ul. Jaskiniowa 6,<br>42-425 Podlesice, Polska<br><a href='https://www.resortjurajski.pl' target='_blank' style='color:var(--gold)'>resortjurajski.pl</a>"
 data-de="Resort Jurajski<br>ul. Jaskiniowa 6,<br>42-425 Podlesice, Polen<br><a href='https://www.resortjurajski.pl' target='_blank' style='color(--gold)'>resortjurajski.pl</a>"</p>
-  <img src="mapa.jpg" class="location-map" alt="Mapa">
+  <img src="mapa.jpg" class="location-map" alt="Mapa / Karte"
+       onerror="this.style.display='none'; document.getElementById('map-fallback').style.display='block';">
+  <div id="map-fallback" style="display:none; text-align:center; padding:20px 0;">
+    <a href="https://maps.google.com/?q=Resort+Jurajski+Podlesice" target="_blank"
+       style="color:var(--gold); font-size:15px; letter-spacing:1px;">
+      📍 Google Maps öffnen / Otwórz Google Maps
+    </a>
+  </div>
   <p class="trans"
     data-pl="1. Przyjęcie ślubne<br>2. Hotel Ostaniec – 36 pokoi 2-osobowych i 6 Studio (2 pokoje + 1 łazienka)<br>3. Osada Zborów – tylko pokoje 2-osobowe"
     data-de="1. Hochzeitsfeier<br>2. Hotel Ostaniec – 36 Doppelzimmer und 6 Studios (2 Zimmer mit einem Bad)<br>3. Osada Zborów – nur Doppelzimmer"></p>
@@ -677,10 +687,8 @@ data-de="Resort Jurajski<br>ul. Jaskiniowa 6,<br>42-425 Podlesice, Polen<br><a h
 <section>
   <h2 class="trans" data-pl="Zdjęcia z wesela" data-de="Hochzeitsfotos"></h2>
   <p class="trans"
-    data-pl="Każda chwila tak szybko ucieka. Będziemy wdzięczni, jeśli podzielicie się z nami Waszymi zdjęciami — nie tylko z nami w roli głównej, oczywiście z Wesela ☺
-    Zeskanuj kod QR lub kliknij przycisk, aby przejść do galerii."
-    data-de="Jeder Moment vergeht so schnell. Wir wären sehr dankbar, wenn ihr eure Fotos mit uns teilt — nicht nur mit uns in der Hauptrolle, natürlich von der Hochzeit ☺
-    Scanne den QR-Code oder klicke den Button, um zur Galerie zu gelangen."></p>
+    data-pl="Każda chwila tak szybko ucieka. Będziemy wdzięczni, jeśli podzielicie się z nami Waszymi zdjęciami — nie tylko z nami w roli głównej, oczywiście z Wesela ☺<br>Zeskanuj kod QR lub kliknij przycisk, aby przejść do galerii."
+    data-de="Jeder Moment vergeht so schnell. Wir wären sehr dankbar, wenn ihr eure Fotos mit uns teilt — nicht nur mit uns in der Hauptrolle, natürlich von der Hochzeit ☺<br>Scanne den QR-Code oder klicke den Button, um zur Galerie zu gelangen."></p>
   <div class="qr-wrap" style="margin-top:32px;">
     <a href="https://photos.app.goo.gl/XJbj8UqFY39CLZpJA" target="_blank" rel="noopener">
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://photos.app.goo.gl/XJbj8UqFY39CLZpJA"
@@ -779,11 +787,26 @@ function setLang(lang) {
   document.getElementById('btn-pl').classList.toggle('active', lang === 'pl');
   document.getElementById('btn-de').classList.toggle('active', lang === 'de');
 
+  // Re-apply sentence breaks after language switch
+  setTimeout(applySentenceBreaks, 0);
+
   // Schedule
   const list = document.getElementById('schedule-list');
   list.innerHTML = schedule[lang].map(([t, e]) =>
     `<li><span class="time">${t}</span><span>${e}</span></li>`
   ).join('');
+}
+
+// ── SENTENCE BREAKS: after each period, new line ──
+function applySentenceBreaks() {
+  document.querySelectorAll('section p.trans, section p[data-pl]').forEach(el => {
+    // Only process plain text nodes (no <br> heavy content like address)
+    const html = el.innerHTML;
+    // Skip if already has <br> tags (address blocks etc.)
+    if (html.includes('<br>') || html.includes('<a ')) return;
+    // Split on ". " or "." at end, insert <br> after each sentence
+    el.innerHTML = html.replace(/\.(\s+)(?=[^\s])/g, '.<br>').replace(/\.\s*$/g, '.');
+  });
 }
 
 // ── COUNTDOWN ──
@@ -887,6 +910,7 @@ document.getElementById('reservationForm').addEventListener('submit', async (e) 
 
 // Init
 setLang('pl');
+applySentenceBreaks();
 </script>
 
 </body>
